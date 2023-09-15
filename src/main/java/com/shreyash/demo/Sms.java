@@ -1,7 +1,9 @@
 package com.shreyash.demo;
 
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
 
 
 public class Sms implements MessageService{
