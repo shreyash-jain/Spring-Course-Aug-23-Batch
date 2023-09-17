@@ -10,7 +10,7 @@
 <div class="container my-2" align="center">
 
     <h3>Todo List</h3>
-    <!-- todo:  add todo-->
+    <a th:href="@{/addnew}" class = "btn btn-primary" > Add Todo </a>
     <table style="width:80%" border="1"
            class = "table table-striped table-responsive-md">
         <thead>
@@ -20,7 +20,13 @@
         </tr>
         </thead>
         <tbody>
-        <!-- todo:  add todo-->
+        <tr th:each="todo:${alltodolist}">
+            <td th:text="${todo.name}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/showUpdate/{id}(id = ${todo.id})}"> Update </a>
+                <a class="btn btn-danger" th:href="@{/deleteTodo/{id}(id = ${todo.id})}"> Delete </a>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

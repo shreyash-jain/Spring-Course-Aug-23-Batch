@@ -1,25 +1,39 @@
 package com.shreyash.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class TodoController {
+
+
+    @Autowired
+    TodoService todoService;
     @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("alltodolist", null);
+        model.addAttribute("alltodolist", todoService.getAllTodo());
         return "index";
     }
-    @GetMapping("/update")
-    public String viewUpdatePage(Model model) {
-        //model.addAttribute("alltodolist", null);
+
+    @GetMapping("/addnew")
+    public String addNewTodo(Model model) {
+        Todo todo = new Todo();
+        model.addAttribute("todo", todo);
+        return "newtodo";
+    }
+
+    @GetMapping("/showUpdate/{id}")
+    public String getUpdatePage(@PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("todo", todoService.getById(id));
         return "update";
     }
-    @GetMapping("/newtodo")
-    public String viewNewTodoPage(Model model) {
-        //model.addAttribute("alltodolist", null);
-        return "newtodo";
+    @GetMapping("/deleteTodo/{id}")
+    public String deleteTodo(@PathVariable(value = "id") int id, Model model) {
+        todoService.deleteById(id);
+        return "redirect:/";
     }
 
 }
