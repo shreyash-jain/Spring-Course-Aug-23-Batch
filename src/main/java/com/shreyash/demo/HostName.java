@@ -27,7 +27,7 @@ public class HostName {
         this.companyName = companyName;
     }
 
-    @NotBlank
+
     String companyName;
 
 }

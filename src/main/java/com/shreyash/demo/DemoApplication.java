@@ -1,5 +1,8 @@
 package com.shreyash.demo;
 
+import org.apache.catalina.core.StandardThreadExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +10,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.web.embedded.tomcat.TomcatWebServer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
@@ -17,7 +22,6 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @PropertySource("classpath:new.properties")
-@ImportResource({"classpath:contexts/applicationContext.xml"})
 public class DemoApplication implements ApplicationRunner {
 
 	@Value("${app.me}")
