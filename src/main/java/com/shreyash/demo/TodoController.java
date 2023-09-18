@@ -15,6 +15,7 @@ public class TodoController {
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("alltodolist", todoService.getAllTodo());
+        System.out.println("Seck");
         return "index";
     }
 
