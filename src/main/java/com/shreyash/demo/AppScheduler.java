@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppScheduler {
 
-    @Scheduled(cron = "0 0 10 ? * *")
+
  // 0 10
  // ? -> any
  // * -> all
@@ -21,6 +21,7 @@ public class AppScheduler {
             // 0 0 0 5-23/5,28-30 * ?
 
     // sec, min, hr, day-of-month, month, day-of-week
+    @Scheduled(cron = "0 0 10 ? * *")
     void run(){
         System.out.println("Say hi from run : AppScheduler");
         // after every fixedRate time
