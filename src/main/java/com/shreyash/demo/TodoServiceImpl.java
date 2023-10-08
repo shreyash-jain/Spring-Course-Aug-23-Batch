@@ -12,7 +12,7 @@ public class TodoServiceImpl implements TodoService{
 
     ArrayList<Todo> myTodos = new ArrayList<>(){
         {
-            add(new Todo(1, "Bring Milk"));
+           // add(new Todo(1, "Bring Milk"));
         }
     };
     @Override

@@ -20,5 +20,4 @@ public class LogInterceptor implements HandlerInterceptor {
         System.out.println("Heck");
     }
 
-
 }

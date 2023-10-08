@@ -1,32 +1,26 @@
 package com.shreyash.demo;
 
+
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+@Setter
+@Getter
+@ToString
+
 public class Todo {
     public Integer id;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     public String name;
 
-    public Todo() {
 
-    }
 
-    public Todo(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }
+
+
+// JAVA -> Source Code -> compiling -> bytecode
+// .java -> .class -> byte data -> JVM

@@ -20,12 +20,21 @@ public class AppController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = "application/json")
     public WhatsappConfig getBook(@PathVariable int id, @RequestParam(value = "num") Optional<Integer> num) {
-
-            System.out.println(num);
             return whatsappConfig;
-
     }
 
+
+    // localhost:8080/post/56
+
+    // mobiles, laptops
+
+
+    @RequestMapping(method = RequestMethod.POST, path = "/post/{id}", produces = "application/json")
+    public WhatsappConfig addBook(@PathVariable int id, @RequestParam(value = "num") Optional<Integer> num) {
+
+        // doing a clean up job
+        return whatsappConfig;
+    }
 
 
 }
