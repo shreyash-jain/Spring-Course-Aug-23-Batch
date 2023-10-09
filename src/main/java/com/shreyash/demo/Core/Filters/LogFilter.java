@@ -1,6 +1,7 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Core.Filters;
 
 import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 public class LogFilter  implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Check");
+        System.out.println(((HttpServletRequest)servletRequest).getRequestURL().toString());
         filterChain.doFilter(servletRequest, servletResponse);
         System.out.println("Deck");
     }

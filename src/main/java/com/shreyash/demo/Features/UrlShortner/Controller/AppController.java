@@ -1,16 +1,17 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Features.UrlShortner.Controller;
 
 
+import com.shreyash.demo.Core.Configuration.WhatsappConfig;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Method;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("app")
 public class AppController {
 
 
@@ -22,9 +23,10 @@ public class AppController {
     public WhatsappConfig getBook(@PathVariable int id, @RequestParam(value = "num") Optional<Integer> num) {
 
             System.out.println(num);
-            return whatsappConfig;
+            throw new RuntimeException("Some error");
 
     }
+
 
 
 

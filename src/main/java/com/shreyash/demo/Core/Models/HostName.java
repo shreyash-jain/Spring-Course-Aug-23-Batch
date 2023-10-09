@@ -1,4 +1,4 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Core.Models;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;

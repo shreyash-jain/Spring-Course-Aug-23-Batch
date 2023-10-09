@@ -1,4 +1,4 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Core.Configuration;
 
 
 import org.springframework.context.annotation.Bean;

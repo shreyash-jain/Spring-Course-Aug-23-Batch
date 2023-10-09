@@ -1,4 +1,4 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Core.Models;
 
 import jakarta.persistence.Entity;
 import lombok.Data;

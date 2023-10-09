@@ -1,8 +1,8 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Core.Configuration;
 
 
+import com.shreyash.demo.Core.Models.HostName;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.stereotype.Component;

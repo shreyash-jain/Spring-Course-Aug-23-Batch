@@ -1,13 +1,13 @@
-package com.shreyash.demo;
+package com.shreyash.demo.Features.Notification.Service;
 
 
+import com.shreyash.demo.Core.Configuration.WhatsappConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class Whatsapp implements MessageService{
+public class Whatsapp implements MessageService {
 
     @Autowired
     private WhatsappConfig whatsappConfig;
