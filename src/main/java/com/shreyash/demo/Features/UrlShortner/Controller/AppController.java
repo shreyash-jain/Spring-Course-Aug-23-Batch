@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,12 +21,20 @@ public class AppController {
     WhatsappConfig whatsappConfig;
     //www.google.com/hello/7/again?ad_source=facebook
 
+
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = "application/json")
     public WhatsappConfig getBook(@PathVariable int id, @RequestParam(value = "num") Optional<Integer> num) {
 
             System.out.println(num);
             throw new RuntimeException("Some error");
 
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/create", produces = "application/json")
+    public ResponseEntity<String> postSample() {
+
+
+        return ResponseEntity.ok().body("");
     }
 
 
