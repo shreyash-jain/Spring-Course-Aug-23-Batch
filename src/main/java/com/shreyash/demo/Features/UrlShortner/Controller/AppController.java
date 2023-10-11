@@ -31,8 +31,9 @@ public class AppController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/create", produces = "application/json")
-    public ResponseEntity<String> postSample() {
-
+    public ResponseEntity<String> postSample(@RequestAttribute String body, @RequestAttribute boolean valid) {
+        System.out.println(valid);
+        System.out.println(body);
 
         return ResponseEntity.ok().body("");
     }
