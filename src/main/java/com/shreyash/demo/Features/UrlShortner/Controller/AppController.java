@@ -1,9 +1,11 @@
 package com.shreyash.demo.Features.UrlShortner.Controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shreyash.demo.Core.Configuration.WhatsappConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,11 @@ import java.util.Optional;
 @RequestMapping("app")
 public class AppController {
 
+    // Annotations, Object Mapper
+
+
+    @Autowired
+    SessionFactory sessionFactory;
 
     @Autowired
     WhatsappConfig whatsappConfig;
@@ -26,7 +33,8 @@ public class AppController {
     public WhatsappConfig getBook(@PathVariable int id, @RequestParam(value = "num") Optional<Integer> num) {
 
             System.out.println(num);
-            throw new RuntimeException("Some error");
+
+            return whatsappConfig;
 
     }
 

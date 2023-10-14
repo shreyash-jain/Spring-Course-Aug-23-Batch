@@ -1,6 +1,9 @@
 package com.shreyash.demo;
 
+import com.shreyash.demo.Features.Swiggy.Models.Address;
+import com.shreyash.demo.Features.Swiggy.Models.FoodItem;
 import com.shreyash.demo.Features.Swiggy.Models.Restaurants;
+import com.shreyash.demo.Features.Swiggy.Service.FoodItemCrudRepository;
 import com.shreyash.demo.Features.Swiggy.Service.RestaurantCrudRepository;
 import com.shreyash.demo.Features.Swiggy.Service.RestaurantRepository;
 import org.hibernate.Session;
@@ -18,6 +21,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -36,6 +41,9 @@ public class DemoApplication implements ApplicationRunner {
 
 	@Autowired
 	RestaurantCrudRepository restaurantCrudRepository;
+
+	@Autowired
+	FoodItemCrudRepository foodItemCrudRepository;
 
 	@Autowired
 	ApplicationContext applicationContext;
@@ -72,11 +80,20 @@ public class DemoApplication implements ApplicationRunner {
 		Session session = sessionFactory.openSession();
 		System.out.println("Starting Transaction");
 
-		Restaurants sagarRatna = new Restaurants("Sagar Ratna Malvia Nagar", "100017", "South Indian");
-		restaurantCrudRepository.save(sagarRatna);
-		sagarRatna.setRating(4);
+		Address address = new Address("110017", "Delhi");
+		Restaurants sagarRatna = new Restaurants("Sagar Ratna with food items", address, "South Indian");
+
+		FoodItem pavBhaji = new FoodItem("Pav Bhaji", "Indian");
+		FoodItem burger = new FoodItem("Burger", "Indian");
+
+		List<FoodItem> foodItems =  Arrays.asList(pavBhaji, burger);
+		sagarRatna.setFoodItems(foodItems);
 		restaurantCrudRepository.save(sagarRatna);
 
+
+
+		// Owner - the entity that should be changed -> Inverse End also changes
+		// Inverse End - Address
 
 		session.close();
 		session.close();
