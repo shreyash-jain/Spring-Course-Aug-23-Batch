@@ -24,11 +24,10 @@ public class FoodItem {
     public String name;
     @Column(name = "cuisine")
     public String cuisine;
-    @ManyToMany(mappedBy = "foodItems")
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-
-    public List<Restaurants> restaurants;
-
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    public Restaurants restaurants;
+//
 
     public FoodItem(String name, String cuisine) {
         this.name = name;

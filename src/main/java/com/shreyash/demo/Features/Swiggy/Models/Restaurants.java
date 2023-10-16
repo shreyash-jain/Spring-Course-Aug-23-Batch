@@ -17,9 +17,9 @@ import java.util.List;
 public class Restaurants {
 
     @Id
-    @Column(name = "_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer _id;
+    public Integer id;
     @Column(name = "name")
     public String name;
     @Column(name = "cuisine")
@@ -29,12 +29,7 @@ public class Restaurants {
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     public Address address_temp;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="restaurant_fooditem",
-            joinColumns = @JoinColumn(name="restaurant_id", referencedColumnName = "_id"),
-            inverseJoinColumns = @JoinColumn(name = "fooditem_id",  referencedColumnName = "id")
-    )
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurants")
     public List<FoodItem> foodItems;
 
 
