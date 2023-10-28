@@ -16,14 +16,11 @@ public class CreateShortnerInterceptor implements HandlerInterceptor {
 //        // get the body
 //        // body -> string -> class object -> ObjectMapper -> validity
 //        request.setAttribute("valid", true);
-        String requestWrapperBody = new GetRequestBody(request).getBody();
+        //String requestWrapperBody = new GetRequestBody(request).getBody();
         // check for validity
-        request.setAttribute("body", requestWrapperBody);
+
         request.setAttribute("valid", true);
 
-        System.out.println("print from interceptor");
-
-        System.out.println(requestWrapperBody);
 
         return true;
     }

@@ -4,7 +4,7 @@ public class Dog implements Animal{
     @Override
     public void introduce(String name) {
         System.out.println("My name is " + name);
-
+        throw new RuntimeException();
     }
 
     @Override

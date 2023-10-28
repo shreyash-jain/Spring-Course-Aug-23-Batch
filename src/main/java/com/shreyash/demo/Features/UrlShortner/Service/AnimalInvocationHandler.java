@@ -13,9 +13,15 @@ public class AnimalInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-
-        System.out.println("Hi!");
-        method.invoke(animal, args);
+        // began txn
+        try {
+            method.invoke(animal, args);
+            // end txn
+        }
+        catch (Exception e){
+            // rolled back
+            // end txn
+        }
         System.out.println("Bye");
         return true;
     }

@@ -9,6 +9,7 @@ import com.shreyash.demo.Features.Swiggy.Service.RestaurantRepository;
 import com.shreyash.demo.Features.UrlShortner.Service.Animal;
 import com.shreyash.demo.Features.UrlShortner.Service.AnimalInvocationHandler;
 import com.shreyash.demo.Features.UrlShortner.Service.Dog;
+import com.shreyash.demo.Features.UrlShortner.Service.LivingBeingInvocationHandler;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.lang.reflect.Proxy;
 import java.sql.DriverManager;
@@ -46,6 +49,9 @@ public class DemoApplication implements ApplicationRunner {
 
 
     java.sql.Connection connection;
+
+    @Autowired
+    TransactionTemplate transactionTemplate;
 
     @Autowired
     SessionFactory sessionFactory;
@@ -71,11 +77,12 @@ public class DemoApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         System.out.println(audience);
-        persistWithHibernate();
+        createProxy();
     }
 
     void createProxy() {
         Dog arnold = new Dog();
+
         // Get the class loader from the original object
         ClassLoader arnoldClassLoader = arnold.getClass().getClassLoader();
 
@@ -85,20 +92,33 @@ public class DemoApplication implements ApplicationRunner {
         // Create a proxy for our arnold object
         Animal proxyArnold = (Animal) Proxy.newProxyInstance(arnoldClassLoader, interfaces, new AnimalInvocationHandler(arnold));
 
+
         // Call one of our original object's methods on the proxy object
         proxyArnold.introduce("arnold");
     }
 
     // crud operations : create, read, update and delete
 
+
+
+
+    @Transactional(propagation = Propagation.REQUIRED)
     void doBefore() {
-		// random stuff
+        doAfter();
+
+    }
+
+
+    void doBeforeNonTxn() {
+        doAfter();
     }
 
     ;
 
+
     void doAfter() {
 		// random stuff
+        System.out.println("10");
     }
 
     ;
@@ -140,10 +160,11 @@ public class DemoApplication implements ApplicationRunner {
 
         Pageable restaurantPageable = Pageable.ofSize(50);
 
+        Slice<Restaurants> these50Res = restaurantCrudRepository.getAllRestaurantsPaginated(restaurantPageable);
+        while (these50Res.hasNext()) {
 
-        while (!hasDataEnded(restaurantPageable)) {
-            List<Restaurants> these50Res = restaurantCrudRepository.getAllRestaurantsPaginated(restaurantPageable);
-            restaurantPageable = restaurantPageable.next();
+            these50Res = restaurantCrudRepository.getAllRestaurantsPaginated(these50Res.nextPageable());
+
         }
         // write the code to fetch all the data that is present in dd with getAllRestaurantsPaginated
         // Owner - the entity that should be changed -> Inverse End also changes
@@ -298,6 +319,7 @@ public class DemoApplication implements ApplicationRunner {
 	// catching - redis
 	// AOP
 	// Web Flux -> rest template
+    // Deployment - AWS
 
 	// Sat : 7:00 -> 9:30
 	// Sun : 7:00 -> 9:30

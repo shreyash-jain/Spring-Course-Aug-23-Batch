@@ -2,6 +2,7 @@ package com.shreyash.demo.Features.Swiggy.Service;
 
 import com.shreyash.demo.Features.Swiggy.Models.Restaurants;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,7 +29,7 @@ public interface RestaurantCrudRepository extends JpaRepository<Restaurants, Int
     @Query(
             value = "select r from Restaurants r "
     )
-    List<Restaurants> getAllRestaurantsPaginated(Pageable pageable);
+    Slice<Restaurants> getAllRestaurantsPaginated(Pageable pageable);
 
     @Query(
             value = "select r from Restaurants r Where r.name = :name"
@@ -42,7 +43,7 @@ public interface RestaurantCrudRepository extends JpaRepository<Restaurants, Int
     List<Restaurants> getAllRestaurantsWhereNamesAre(@Param("names") List<String> names);
 
     // Derived Queries
-    Restaurants findByIdIsIn(List<Integer> ids);
+    List<Restaurants> findFirstByName(String name);
 
 
 
