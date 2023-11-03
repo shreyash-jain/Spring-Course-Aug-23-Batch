@@ -25,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,7 @@ import java.util.Objects;
 @SpringBootApplication
 @PropertySource("classpath:new.properties")
 @EnableScheduling
+@EnableWebSecurity(debug = true)
 public class DemoApplication implements ApplicationRunner {
 
     @Value("${app.me}")
