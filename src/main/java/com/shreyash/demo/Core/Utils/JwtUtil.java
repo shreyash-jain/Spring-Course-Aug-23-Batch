@@ -8,8 +8,7 @@ import java.util.function.Predicate;
 
 public class JwtUtil {
     private static final String SECRET = "87690825e122bfda798af4c28267c2265bc16ea617a587deaf7f83ee69051e74";
-    private static final long AUTH_EXPIRATION_TIME = 464_000_000;
-    private static final long REFRESH_EXPIRATION_TIME = 964_000_000;
+
     public static String generateToken(String username,  final long addedExpiry) {
         return Jwts.builder()
                 .setSubject(username)
@@ -51,7 +50,7 @@ public class JwtUtil {
     }
 
 
-    private static boolean isTokenExpired(String token){
+    public static boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
 
 
